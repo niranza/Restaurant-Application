@@ -1,21 +1,27 @@
 package com.niran.restaurantapplication.viewmodels
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.launch
+import com.niran.restaurantapplication.repositories.ItemRepository
+import com.niran.restaurantapplication.utils.LoadingHandler
 
-class SplashScreenViewModel : ViewModel() {
+class SplashScreenViewModel(private val itemRepository: ItemRepository) : ViewModel() {
 
-    init {
-        loadSplashScreen()
+    fun loadSplashScreen(loadingHandler: LoadingHandler) {
+        itemRepository.insertAllItems(viewModelScope, loadingHandler)
     }
 
-    fun loadSplashScreen() {
-        viewModelScope.launch {
+}
 
-            //load data
+class SplashScreenViewModelFactory(private val itemRepository: ItemRepository) :
+    ViewModelProvider.Factory {
 
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(SplashScreenViewModel::class.java)) {
+            @Suppress("UNCHECKED_CAST")
+            return SplashScreenViewModel(itemRepository) as T
         }
+        throw IllegalArgumentException("Unknown ViewModel Class")
     }
-
 }

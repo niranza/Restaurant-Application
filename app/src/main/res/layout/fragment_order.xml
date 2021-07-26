@@ -31,14 +31,26 @@
 
     <Button
         android:id="@+id/make_order_btn"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
         android:contentDescription="@string/make_an_order"
         android:text="@string/make_an_order"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/cancel_order_btn"
         app:layout_constraintTop_toBottomOf="@id/order_rv" />
+
+    <Button
+        android:id="@+id/cancel_order_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:contentDescription="@string/cancel"
+        android:text="@string/cancel"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/make_order_btn"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

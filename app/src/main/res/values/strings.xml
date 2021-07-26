@@ -7,4 +7,6 @@
     <string name="make_an_order">Make An Order</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="food_image">Food Image</string>
+    <string name="cancel">Cancel</string>
 </resources>

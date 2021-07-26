@@ -10,7 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RestaurantApplication">
-        <activity android:name=".OrderActivity" />
+        <activity
+            android:name=".OrderActivity"
+            android:parentActivityName="com.niran.restaurantapplication.MainActivity">
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.niran.restaurantapplication.MainActivity" />
+
+        </activity>
         <activity android:name=".MainActivity" />
         <activity
             android:name=".SplashScreenActivity"
@@ -21,6 +30,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

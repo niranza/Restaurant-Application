@@ -2,4 +2,5 @@
 <resources>
     <dimen name="wide_margin">30dp</dimen>
     <dimen name="margin_medium">15dp</dimen>
+    <dimen name="padding_rv">6dp</dimen>
 </resources>

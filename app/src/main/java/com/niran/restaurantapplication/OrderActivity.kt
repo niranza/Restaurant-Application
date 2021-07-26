@@ -21,6 +21,8 @@ class OrderActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
     }
 
     override fun onSupportNavigateUp(): Boolean {

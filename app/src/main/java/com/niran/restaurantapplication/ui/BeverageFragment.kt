@@ -5,16 +5,44 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.niran.restaurantapplication.R
+import androidx.fragment.app.viewModels
+import com.niran.restaurantapplication.RestaurantApplication
+import com.niran.restaurantapplication.databinding.FragmentBeverageBinding
+import com.niran.restaurantapplication.utils.ItemAdapter
+import com.niran.restaurantapplication.viewmodels.BeverageViewModel
+import com.niran.restaurantapplication.viewmodels.BeverageViewModelFactory
 
 
 class BeverageFragment : Fragment() {
+
+    private lateinit var binding: FragmentBeverageBinding
+
+    private val viewModel: BeverageViewModel by viewModels {
+        BeverageViewModelFactory((activity?.application as RestaurantApplication).itemRepository)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_beverage, container, false)
+
+        binding = FragmentBeverageBinding.inflate(inflater)
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val adapter = ItemAdapter()
+
+        binding.apply {
+            beverageRv.adapter = adapter
+        }
+
+        viewModel.beverageList.observe(viewLifecycleOwner) { beverageList ->
+            beverageList?.let { adapter.submitList(it) }
+        }
+
     }
 }
