@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_medium"
         android:contentDescription="@string/add_menu_item"
-        android:src="@drawable/ic_baseline_add_24"
+        android:src="@drawable/ic_add"
         app:layout_constraintBottom_toTopOf="@id/make_order_btn"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -38,16 +38,16 @@
         android:text="@string/make_an_order"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/cancel_order_btn"
+        app:layout_constraintStart_toEndOf="@id/clear_order_btn"
         app:layout_constraintTop_toBottomOf="@id/order_rv" />
 
     <Button
-        android:id="@+id/cancel_order_btn"
+        android:id="@+id/clear_order_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
-        android:contentDescription="@string/cancel"
-        android:text="@string/cancel"
+        android:contentDescription="@string/clear"
+        android:text="@string/clear"
         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/make_order_btn"

@@ -7,25 +7,51 @@ import com.niran.restaurantapplication.database.models.Item
 
 object AppUtils {
 
-    fun createNewItem(itemId: Int): Item = Item(
+    fun createNewFood(itemId: Int): Item = Item(
         itemId = itemId,
-        itemName = "Bacon",
-        itemPrice = 30.6,
+        itemName = "Pasta",
+        itemPrice = 45.0,
         itemImageId = R.drawable.ic_food,
         itemType = FoodTypes.FOOD.ordinal,
         itemIngredients = Ingredients(
             listOf(
                 Ingredient(
-                    ingredientName = "meat",
+                    ingredientName = "Flour",
                 ),
                 Ingredient(
-                    ingredientName = "sugar",
+                    ingredientName = "Eggs",
                 ),
                 Ingredient(
-                    ingredientName = "bread",
+                    ingredientName = "Tomatoes",
+                ),
+                Ingredient(
+                    ingredientName = "Basil",
+                ),
+                Ingredient(
+                    ingredientName = "Mushrooms",
+                ),
+                Ingredient(
+                    ingredientName = "Salt & Pepper",
                 ),
             )
         )
     )
+
+    fun createNewBeverage(itemId: Int): Item = Item(
+        itemId = itemId,
+        itemName = "Coca Cola",
+        itemPrice = 10.0,
+        itemImageId = R.drawable.ic_food,
+        itemType = FoodTypes.BEVERAGE.ordinal,
+        itemIngredients = Ingredients(listOf())
+    )
+
+    fun formatIngredients(ingredients: List<Ingredient>): String {
+        val stringList = mutableListOf<String>()
+        for (ingredient in ingredients)
+            if (!ingredient.isIngredientRemoved)
+                stringList.add(ingredient.ingredientName)
+        return stringList.joinToString(", ")
+    }
 
 }

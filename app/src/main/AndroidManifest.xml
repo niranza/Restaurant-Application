@@ -11,14 +11,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RestaurantApplication">
         <activity
+            android:name=".ItemPreviewActivity"
+            android:parentActivityName=".OrderActivity">
+
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.niran.restaurantapplication.OrderActivity" />
+        </activity>
+        <activity
             android:name=".OrderActivity"
-            android:parentActivityName="com.niran.restaurantapplication.MainActivity">
+            android:parentActivityName=".MainActivity">
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.niran.restaurantapplication.MainActivity" />
-
         </activity>
         <activity android:name=".MainActivity" />
         <activity
@@ -30,7 +39,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

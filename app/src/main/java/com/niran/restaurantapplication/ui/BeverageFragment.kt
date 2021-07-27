@@ -6,14 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.niran.restaurantapplication.OrderActivity
 import com.niran.restaurantapplication.RestaurantApplication
+import com.niran.restaurantapplication.database.models.Item
 import com.niran.restaurantapplication.databinding.FragmentBeverageBinding
 import com.niran.restaurantapplication.utils.ItemAdapter
 import com.niran.restaurantapplication.viewmodels.BeverageViewModel
 import com.niran.restaurantapplication.viewmodels.BeverageViewModelFactory
 
 
-class BeverageFragment : Fragment() {
+class BeverageFragment(
+    private val itemAdapterFragmentsHandler: OrderActivity.ItemAdapterFragmentsHandler
+) : Fragment() {
 
     private lateinit var binding: FragmentBeverageBinding
 
@@ -34,7 +38,11 @@ class BeverageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ItemAdapter()
+        val adapter = ItemAdapter(object : ItemAdapter.ItemClickHandler {
+            override fun onItemClicked(item: Item) {
+                itemAdapterFragmentsHandler.startItemPreviewActivity(item.itemId)
+            }
+        })
 
         binding.apply {
             beverageRv.adapter = adapter
@@ -45,4 +53,5 @@ class BeverageFragment : Fragment() {
         }
 
     }
+
 }

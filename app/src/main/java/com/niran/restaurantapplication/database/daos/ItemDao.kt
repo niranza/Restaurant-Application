@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ItemDao {
 
-    @Query("SELECT * FROM item_table WHERE item_type = :type ORDER BY item_name ASC")
+    @Query("SELECT * FROM item_table WHERE item_type = :type AND is_item_ordered = 0 ORDER BY item_name ASC")
     fun getItemsByType(type: Int): Flow<List<Item>>
 
     @Query("DELETE FROM item_table")
@@ -22,7 +22,16 @@ interface ItemDao {
     @Delete
     suspend fun deleteItem(item: Item)
 
-    @Query("SELECT * FROM item_table ORDER BY item_name ASC")
+    @Query("SELECT * FROM item_table WHERE is_item_ordered = 0 ORDER BY item_name ASC")
     fun getAllItems(): Flow<List<Item>>
+
+    @Query("SELECT * FROM item_table WHERE is_item_ordered = 1 ORDER BY item_name ASC")
+    fun getAllOrderedItems(): Flow<List<Item>>
+
+    @Query("SELECT * FROM item_table WHERE item_id = :itemId")
+    fun getItem(itemId: Int): Flow<Item>
+
+    @Query("DELETE FROM item_table WHERE is_item_ordered = 1")
+    suspend fun deleteAllOrderedItems()
 
 }

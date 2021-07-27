@@ -9,6 +9,9 @@ class Converters {
     @TypeConverter
     fun fromIngredients(ingredients: Ingredients): String {
         val stringList = mutableListOf<String>()
+
+        if (ingredients.ingredientList.isEmpty()) return ""
+
         for (ingredient in ingredients.ingredientList) {
             val ingredientStringList = listOf(
                 ingredient.ingredientName,
@@ -24,6 +27,9 @@ class Converters {
     fun toIngredients(string: String): Ingredients {
         val ingredientList = mutableListOf<Ingredient>()
         val ingredientStringList = string.split("\n")
+
+        if (ingredientStringList[0].isBlank()) return Ingredients()
+
         for (ingredientString in ingredientStringList) {
             ingredientString.split("-").also {
                 ingredientList.add(

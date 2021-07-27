@@ -40,7 +40,7 @@ abstract class AppDatabase : RoomDatabase() {
 
             var id = 1
             repeat(0) {
-                itemDao.insertItem(AppUtils.createNewItem(id))
+                itemDao.insertItem(AppUtils.createNewFood(id))
                 id++
             }
 

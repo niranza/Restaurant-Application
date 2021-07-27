@@ -33,10 +33,11 @@ class SplashScreenActivity : AppCompatActivity() {
 
         //testing
         lifecycleScope.launch {
-//            var id = 1
+//            var id = 11
 //            repeat(10) {
 //                FirebaseFireStore.itemApiService.saveItem(
-//                    AppUtils.createNewItem(id),
+////                    AppUtils.createNewFood(id),
+//                    AppUtils.createNewBeverage(id),
 //                    this@SplashScreenActivity
 //                )
 //                id++

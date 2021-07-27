@@ -29,6 +29,9 @@ data class Item(
     @ColumnInfo(name = "item_ingredients")
     val itemIngredients: Ingredients = Ingredients(),
 
+    @ColumnInfo(name = "is_item_ordered")
+    val isItemOrdered: Boolean = false
+
     /*@ColumnInfo(name = "item_tags")
     val itemTag: List<Tags>,*/
 )
