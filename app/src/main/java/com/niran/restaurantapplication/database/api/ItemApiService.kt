@@ -14,7 +14,10 @@ class ItemApiService {
 
     private val itemCollectionRef = Firebase.firestore.collection(ITEM_COLLECTION)
 
-    suspend fun saveItem(item: Item, context: Context) {
+    suspend fun saveItem(
+        item: Item,
+        context: Context
+    ) {
         try {
             withContext(Dispatchers.IO) { itemCollectionRef.add(item) }
             Toast.makeText(context, "Successfully saved data", Toast.LENGTH_SHORT).show()
@@ -30,10 +33,11 @@ class ItemApiService {
         itemCollectionRef.get()
             .addOnSuccessListener { result ->
                 val itemList = mutableListOf<Item>()
-                for (doc in result.documents)
+                for (doc in result.documents) {
                     doc.toObject(Item::class.java)?.let { item ->
                         itemList.add(item)
                     }
+                }
                 onSuccess(itemList)
             }
             .addOnFailureListener { exception ->

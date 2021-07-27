@@ -8,7 +8,8 @@ import androidx.room.PrimaryKey
 data class Item(
 
     @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    @ColumnInfo(name = "item_id")
+    val itemId: Int = 0,
 
     @ColumnInfo(name = "item_name")
     val itemName: String = "",
@@ -25,10 +26,9 @@ data class Item(
     @ColumnInfo(name = "item_quantity")
     val itemQuantity: Int = 0,
 
-    /*@ColumnInfo(name = "item_tags")
-    val itemTag: List<Tags>,
-
     @ColumnInfo(name = "item_ingredients")
-    val itemIngredients: List<Ingredients>*/
+    val itemIngredients: Ingredients = Ingredients(),
 
+    /*@ColumnInfo(name = "item_tags")
+    val itemTag: List<Tags>,*/
 )

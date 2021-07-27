@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ItemDao {
 
-    @Query("SELECT * FROM item_table WHERE item_type = :type")
+    @Query("SELECT * FROM item_table WHERE item_type = :type ORDER BY item_name ASC")
     fun getItemsByType(type: Int): Flow<List<Item>>
 
     @Query("DELETE FROM item_table")
@@ -22,7 +22,7 @@ interface ItemDao {
     @Delete
     suspend fun deleteItem(item: Item)
 
-    @Query("SELECT * FROM item_table")
+    @Query("SELECT * FROM item_table ORDER BY item_name ASC")
     fun getAllItems(): Flow<List<Item>>
 
 }

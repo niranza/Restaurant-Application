@@ -22,7 +22,10 @@ class ItemRepository(
     ) {
         itemApiService.getAllItems(loadingHandler) { itemList ->
             scope.launch {
-                for (item in itemList) itemDao.insertItem(item)
+                itemDao.deleteAllItems()
+                for (item in itemList) {
+                    itemDao.insertItem(item)
+                }
                 loadingHandler.onSuccess()
             }
         }

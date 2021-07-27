@@ -7,10 +7,12 @@ import android.os.Looper
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.niran.restaurantapplication.databinding.ActivitySplashScreenBinding
 import com.niran.restaurantapplication.utils.LoadingHandler
 import com.niran.restaurantapplication.viewmodels.SplashScreenViewModel
 import com.niran.restaurantapplication.viewmodels.SplashScreenViewModelFactory
+import kotlinx.coroutines.launch
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -29,16 +31,17 @@ class SplashScreenActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        /*lifecycleScope.launch {
-            FirebaseFireStore.itemApiService.saveItem(
-                Item(
-                    itemName = "Bacon",
-                    itemPrice = 30.6,
-                    itemImageId = R.drawable.ic_food,
-                    itemType = FoodTypes.FOOD.ordinal,
-                ), this@SplashScreenActivity
-            )
-        }*/
+        //testing
+        lifecycleScope.launch {
+//            var id = 1
+//            repeat(10) {
+//                FirebaseFireStore.itemApiService.saveItem(
+//                    AppUtils.createNewItem(id),
+//                    this@SplashScreenActivity
+//                )
+//                id++
+//            }
+        }
 
         loadData()
     }

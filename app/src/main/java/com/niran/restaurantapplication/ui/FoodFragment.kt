@@ -42,5 +42,6 @@ class FoodFragment : Fragment() {
         viewModel.foodList.observe(viewLifecycleOwner) { foodList ->
             foodList?.let { adapter.submitList(it) }
         }
+
     }
 }

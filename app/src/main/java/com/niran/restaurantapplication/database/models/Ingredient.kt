@@ -1,4 +1,11 @@
 package com.niran.restaurantapplication.database.models
 
-class Ingredient {
-}
+data class Ingredient(
+
+    val ingredientName: String = "",
+
+    val isIngredientRemovable: Boolean = false,
+
+    val isIngredientRemoved: Boolean = false,
+
+    )

@@ -4,15 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.niran.restaurantapplication.R
 import com.niran.restaurantapplication.database.daos.ItemDao
 import com.niran.restaurantapplication.database.models.Item
-import com.niran.restaurantapplication.utils.FoodTypes
+import com.niran.restaurantapplication.utils.AppUtils
+import com.niran.restaurantapplication.utils.Converters
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Database(entities = [Item::class], version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun itemDao(): ItemDao
@@ -34,20 +36,16 @@ abstract class AppDatabase : RoomDatabase() {
         }
 
         private suspend fun populateItemDatabase(itemDao: ItemDao) {
-            itemDao.deleteAllItems()
+//            itemDao.deleteAllItems()
 
-            val testItems = listOf(
-                Item(
-                    itemName = "Pasta",
-                    itemPrice = 45.9,
-                    itemImageId = R.drawable.ic_food,
-                    itemType = FoodTypes.FOOD.ordinal,
-                )
-            )
+            var id = 1
+            repeat(0) {
+                itemDao.insertItem(AppUtils.createNewItem(id))
+                id++
+            }
 
-            for (item in testItems)
-                itemDao.insertItem(item)
         }
+
     }
 
     companion object {
