@@ -7,6 +7,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.niran.restaurantapplication.utils.ITEM_ID
+import com.niran.restaurantapplication.utils.MENU_NOTIFICATION_ID
+import com.niran.restaurantapplication.utils.NotificationsUtil
 
 class OrderActivity : AppCompatActivity() {
 
@@ -16,14 +18,12 @@ class OrderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_order)
 
+        NotificationsUtil.cancelNotification(this, MENU_NOTIFICATION_ID)
+
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-
         navController = navHostFragment.navController
-
         setupActionBarWithNavController(navController)
-
-//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     }
 
@@ -31,15 +31,8 @@ class OrderActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
-    val handler = object : ItemAdapterFragmentsHandler {
-        override fun startItemPreviewActivity(itemId: Int) {
-            Intent(this@OrderActivity, ItemPreviewActivity::class.java).apply {
-                putExtra(ITEM_ID, itemId)
-            }.also { this@OrderActivity.startActivity(it) }
-        }
-    }
-
-    interface ItemAdapterFragmentsHandler {
-        fun startItemPreviewActivity(itemId: Int)
-    }
+    fun startItemPreviewActivity(itemId: Int) =
+        Intent(this, ItemPreviewActivity::class.java).apply {
+            putExtra(ITEM_ID, itemId)
+        }.also { startActivity(it) }
 }

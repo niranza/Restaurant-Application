@@ -15,9 +15,7 @@ import com.niran.restaurantapplication.viewmodels.BeverageViewModel
 import com.niran.restaurantapplication.viewmodels.BeverageViewModelFactory
 
 
-class BeverageFragment(
-    private val itemAdapterFragmentsHandler: OrderActivity.ItemAdapterFragmentsHandler
-) : Fragment() {
+class BeverageFragment : Fragment() {
 
     private lateinit var binding: FragmentBeverageBinding
 
@@ -40,7 +38,7 @@ class BeverageFragment(
 
         val adapter = ItemAdapter(object : ItemAdapter.ItemClickHandler {
             override fun onItemClicked(item: Item) {
-                itemAdapterFragmentsHandler.startItemPreviewActivity(item.itemId)
+                (activity as OrderActivity).startItemPreviewActivity(item.itemId)
             }
         })
 

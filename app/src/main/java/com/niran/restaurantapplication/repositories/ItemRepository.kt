@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class ItemRepository(
     private val itemDao: ItemDao,
-    private val itemApiService: ItemApiService
+    private val itemApiService: ItemApiService,
 ) {
 
     val foodList = itemDao.getItemsByType(FoodTypes.FOOD.ordinal)
@@ -33,17 +33,23 @@ class ItemRepository(
 
     fun insertAllItems(
         scope: CoroutineScope,
-        loadingHandler: LoadingHandler
-    ) {
-        itemApiService.getAllItems(loadingHandler) { itemList ->
-            scope.launch {
+        loadingHandler: LoadingHandler,
+    ) = itemApiService.getAllItems(loadingHandler) { itemList ->
+        scope.launch {
+            try {
+
                 itemDao.deleteAllItems()
                 for (item in itemList) {
                     itemDao.insertItem(item)
                 }
+
                 loadingHandler.onSuccess()
+
+            } catch (error: Exception) {
+
+                loadingHandler.onFailure(error)
+
             }
         }
     }
-
 }

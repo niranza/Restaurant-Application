@@ -1,4 +1,12 @@
 <resources>
+
+    <!-- notifications -->
+    <string name="menu_channel_id">menu channel id</string>
+    <string name="menu_channel_name">Menu Channel</string>
+    <string name="menu_notification_title">Still Hungry?</string>
+    <string name="menu_notification_text">Don\'t forget your order!</string>
+    <!-- notifications -->
+
     <string name="app_name">Restaurant Application</string>
     <string name="app_logo">app logo</string>
     <string name="restaurant_name">Restaurant Name</string>
@@ -11,4 +19,18 @@
     <string name="add_quantity">Add Quantity</string>
     <string name="remove_quantity">Remove Quantity</string>
     <string name="item_photo">Item Photo</string>
+    <string name="delete">Delete</string>
+    <string name="checkout">Checkout</string>
+    <string name="food">Foods</string>
+    <string name="beverage">Beverages</string>
+    <string name="back">Back</string>
+    <string name="clear_order_alert_title">Clear Order?</string>
+    <string name="remove_item_alert_title">Remove Item?</string>
+    <string name="remove">Remove</string>
+    <string name="no_items_text">Click on + to add an Item</string>
+    <string name="save">Save</string>
+    <string name="about">About</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

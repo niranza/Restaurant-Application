@@ -16,5 +16,4 @@ class RestaurantApplication : MultiDexApplication() {
     val itemRepository: ItemRepository by lazy {
         ItemRepository(database.itemDao(), FirebaseFireStore.itemApiService)
     }
-
 }

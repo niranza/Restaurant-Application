@@ -29,19 +29,19 @@ class ItemApiService {
     fun getAllItems(
         loadingHandler: LoadingHandler,
         onSuccess: (itemList: List<Item>) -> Unit
-    ) {
-        itemCollectionRef.get()
-            .addOnSuccessListener { result ->
-                val itemList = mutableListOf<Item>()
-                for (doc in result.documents) {
-                    doc.toObject(Item::class.java)?.let { item ->
-                        itemList.add(item)
-                    }
+    ) = itemCollectionRef.get()
+        .addOnSuccessListener { result ->
+
+            val itemList = mutableListOf<Item>()
+            for (doc in result.documents) {
+                doc.toObject(Item::class.java)?.let { item ->
+                    itemList.add(item)
                 }
-                onSuccess(itemList)
             }
-            .addOnFailureListener { exception ->
-                loadingHandler.onFailure(exception)
-            }
-    }
+
+            onSuccess(itemList)
+
+        }
+        .addOnFailureListener { exception -> loadingHandler.onFailure(exception) }
+
 }

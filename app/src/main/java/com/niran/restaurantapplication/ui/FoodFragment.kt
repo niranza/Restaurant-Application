@@ -14,9 +14,7 @@ import com.niran.restaurantapplication.utils.ItemAdapter
 import com.niran.restaurantapplication.viewmodels.FoodViewModel
 import com.niran.restaurantapplication.viewmodels.FoodViewModelFactory
 
-class FoodFragment(
-    private val itemAdapterFragmentsHandler: OrderActivity.ItemAdapterFragmentsHandler
-) : Fragment() {
+class FoodFragment : Fragment() {
 
     private lateinit var binding: FragmentFoodBinding
 
@@ -39,7 +37,7 @@ class FoodFragment(
 
         val adapter = ItemAdapter(object : ItemAdapter.ItemClickHandler {
             override fun onItemClicked(item: Item) {
-                itemAdapterFragmentsHandler.startItemPreviewActivity(item.itemId)
+                (activity as OrderActivity).startItemPreviewActivity(item.itemId)
             }
         })
 

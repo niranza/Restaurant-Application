@@ -43,14 +43,25 @@
 
     <Button
         android:id="@+id/clear_order_btn"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="6dp"
         android:contentDescription="@string/clear"
         android:text="@string/clear"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/make_order_btn"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/no_items_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_items_text"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/order_rv"
+        app:layout_constraintEnd_toEndOf="@id/order_rv"
+        app:layout_constraintStart_toStartOf="@id/order_rv"
+        app:layout_constraintTop_toTopOf="@id/order_rv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

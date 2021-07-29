@@ -8,15 +8,16 @@
 
     <ImageView
         android:id="@+id/app_logo"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="30dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/app_logo"
+        android:src="@drawable/ic_food"
         app:layout_constraintBottom_toTopOf="@id/loading_pb"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/backgrounds/scenic" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ProgressBar
         android:id="@+id/loading_pb"
@@ -26,5 +27,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/app_logo" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

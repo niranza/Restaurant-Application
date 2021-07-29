@@ -31,7 +31,8 @@ class ItemAdapter(private val itemClickHandler: ItemClickHandler) :
 
         companion object {
             fun create(parent: ViewGroup, itemClickHandler: ItemClickHandler): ItemViewHolder {
-                val binding = ItemItemBinding.inflate(LayoutInflater.from(parent.context))
+                val binding = ItemItemBinding
+                    .inflate(LayoutInflater.from(parent.context), parent, false)
                 return ItemViewHolder(binding, itemClickHandler)
             }
         }

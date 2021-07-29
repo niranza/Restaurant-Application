@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/restaurant_logo"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/wide_margin"
         android:adjustViewBounds="true"
@@ -17,7 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        android:src="@drawable/ic_food" />
 
     <Button
         android:id="@+id/order_btn"

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="2dp"
+    app:cardElevation="1dp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,8 +14,8 @@
 
         <ImageView
             android:id="@+id/item_iv"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/food_image"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -25,28 +26,24 @@
         <TextView
             android:id="@+id/item_name_tv"
             style="@style/TextAppearance.AppCompat.Large"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:maxWidth="250dp"
             android:padding="4dp"
             app:layout_constraintBottom_toTopOf="@id/ingredients_tv"
             app:layout_constraintEnd_toStartOf="@id/item_price_tv"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toEndOf="@id/item_iv"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintVertical_chainStyle="spread"
             tools:text="Pasta" />
 
         <TextView
             android:id="@+id/ingredients_tv"
-            style="@style/TextAppearance.AppCompat.Medium"
-            android:layout_width="wrap_content"
+            style="@style/TextAppearance.AppCompat.Small"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintEnd_toStartOf="@id/item_quantity_tv"
-            android:maxWidth="250dp"
             android:padding="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/item_quantity_tv"
             app:layout_constraintStart_toEndOf="@id/item_iv"
             app:layout_constraintTop_toBottomOf="@id/item_name_tv"
             tools:text="tomatoes, flour" />
@@ -57,9 +54,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/item_name_tv"
             app:layout_constraintBaseline_toBaselineOf="@id/item_name_tv"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="40.5" />
 
         <TextView
@@ -70,7 +66,6 @@
             android:padding="4dp"
             app:layout_constraintBaseline_toBaselineOf="@id/ingredients_tv"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ingredients_tv"
             tools:text="quantity: 10" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

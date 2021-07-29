@@ -6,7 +6,9 @@ import androidx.lifecycle.viewModelScope
 import com.niran.restaurantapplication.repositories.ItemRepository
 import com.niran.restaurantapplication.utils.LoadingHandler
 
-class SplashScreenViewModel(private val itemRepository: ItemRepository) : ViewModel() {
+class SplashScreenViewModel(
+    private val itemRepository: ItemRepository,
+) : ViewModel() {
 
     fun loadSplashScreen(loadingHandler: LoadingHandler) {
         itemRepository.insertAllItems(viewModelScope, loadingHandler)
@@ -14,8 +16,9 @@ class SplashScreenViewModel(private val itemRepository: ItemRepository) : ViewMo
 
 }
 
-class SplashScreenViewModelFactory(private val itemRepository: ItemRepository) :
-    ViewModelProvider.Factory {
+class SplashScreenViewModelFactory(
+    private val itemRepository: ItemRepository,
+) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(SplashScreenViewModel::class.java)) {
