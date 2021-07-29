@@ -4,12 +4,12 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "starter_table")
-data class Starter(
+@Entity(tableName = "data_version_table")
+data class DataVersion(
 
     @PrimaryKey(autoGenerate = false)
-    val starterId: Int = 1,
+    val dataVersionId: Int = 1,
 
-    @ColumnInfo(name = "is_first_time")
-    val isFirstTime: Boolean = true
+    @ColumnInfo(name = "data_version")
+    val dataVersion: Int = 0
 )

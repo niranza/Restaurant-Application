@@ -17,7 +17,10 @@ class SplashScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
 
     private val viewModel: SplashScreenViewModel by viewModels {
-        SplashScreenViewModelFactory((this.application as RestaurantApplication).itemRepository)
+        SplashScreenViewModelFactory(
+            (this.application as RestaurantApplication).itemRepository,
+            (this.application as RestaurantApplication).dataVersionRepository,
+        )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,8 +36,7 @@ class SplashScreenActivity : AppCompatActivity() {
             this
         )
 
-//        loadData()
-        startMainActivity()
+        loadData()
     }
 
     private fun loadData() {
@@ -45,7 +47,7 @@ class SplashScreenActivity : AppCompatActivity() {
             }
 
             override fun onFailure(error: Exception) {
-                Toast.makeText(this@SplashScreenActivity, error.message, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@SplashScreenActivity, "Error", Toast.LENGTH_SHORT).show()
                 finish()
             }
         })

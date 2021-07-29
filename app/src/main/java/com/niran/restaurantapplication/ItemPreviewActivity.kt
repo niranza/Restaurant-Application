@@ -9,7 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.niran.restaurantapplication.database.models.Item
 import com.niran.restaurantapplication.databinding.ActivityItemPreviewBinding
-import com.niran.restaurantapplication.utils.AppUtils
+import com.niran.restaurantapplication.utils.FormatUtils
 import com.niran.restaurantapplication.utils.ITEM_ID
 import com.niran.restaurantapplication.utils.MAX_NUMBER_OF_ITEMS_PER_MEAL
 import com.niran.restaurantapplication.viewmodels.ItemPreviewViewModel
@@ -46,7 +46,7 @@ class ItemPreviewActivity : AppCompatActivity() {
                     itemIv.setImageResource(item.itemImageId)
                     itemNameTv.text = item.itemName
                     ingredientsTv.text =
-                        AppUtils.formatIngredients(item.itemIngredients.ingredientList)
+                        FormatUtils.formatIngredients(item.itemIngredients.ingredientList)
                     itemPriceTv.text = item.itemPrice.toString()
                     itemQuantityTv.text = item.itemQuantity.toString()
 

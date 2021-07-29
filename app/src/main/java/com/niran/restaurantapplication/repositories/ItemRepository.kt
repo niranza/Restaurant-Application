@@ -6,9 +6,6 @@ import com.niran.restaurantapplication.database.api.ItemApiService
 import com.niran.restaurantapplication.database.daos.ItemDao
 import com.niran.restaurantapplication.database.models.Item
 import com.niran.restaurantapplication.utils.FoodTypes
-import com.niran.restaurantapplication.utils.LoadingHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 
 class ItemRepository(
     private val itemDao: ItemDao,
@@ -31,25 +28,11 @@ class ItemRepository(
 
     suspend fun insertItem(item: Item) = itemDao.insertItem(item)
 
-    fun insertAllItems(
-        scope: CoroutineScope,
-        loadingHandler: LoadingHandler,
-    ) = itemApiService.getAllItems(loadingHandler) { itemList ->
-        scope.launch {
-            try {
-
-                itemDao.deleteAllItems()
-                for (item in itemList) {
-                    itemDao.insertItem(item)
-                }
-
-                loadingHandler.onSuccess()
-
-            } catch (error: Exception) {
-
-                loadingHandler.onFailure(error)
-
-            }
+    suspend fun insertAllItems() {
+        val itemList = itemApiService.getAllItems()
+        itemDao.deleteAllItems()
+        for (item in itemList) {
+            itemDao.insertItem(item)
         }
     }
 }

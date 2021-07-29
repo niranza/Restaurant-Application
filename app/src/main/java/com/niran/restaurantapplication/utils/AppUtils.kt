@@ -46,12 +46,4 @@ object AppUtils {
         itemIngredients = Ingredients(listOf())
     )
 
-    fun formatIngredients(ingredients: List<Ingredient>): String {
-        val stringList = mutableListOf<String>()
-        for (ingredient in ingredients)
-            if (!ingredient.isIngredientRemoved)
-                stringList.add(ingredient.ingredientName)
-        return stringList.joinToString(", ")
-    }
-
 }

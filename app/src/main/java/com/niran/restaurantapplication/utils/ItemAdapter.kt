@@ -20,7 +20,7 @@ class ItemAdapter(private val itemClickHandler: ItemClickHandler) :
         fun bind(item: Item) {
             binding.apply {
                 itemNameTv.text = item.itemName
-                ingredientsTv.text = AppUtils.formatIngredients(item.itemIngredients.ingredientList)
+                ingredientsTv.text = FormatUtils.formatIngredients(item.itemIngredients.ingredientList)
                 itemPriceTv.text = item.itemPrice.toString()
                 itemIv.setImageResource(item.itemImageId)
                 itemView.setOnClickListener { itemClickHandler.onItemClicked(item) }

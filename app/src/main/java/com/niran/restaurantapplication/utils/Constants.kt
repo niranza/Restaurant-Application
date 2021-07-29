@@ -8,6 +8,8 @@ enum class FoodTypes(val titleId: Int) {
 }
 
 const val ITEM_COLLECTION = "Item"
+const val DATA_VERSION_COLLECTION = "DataVersion"
+const val DATA_VERSION_DOCUMENT = "dataVersion"
 
 const val MAX_NUMBER_OF_ITEMS_PER_MEAL = 10
 
