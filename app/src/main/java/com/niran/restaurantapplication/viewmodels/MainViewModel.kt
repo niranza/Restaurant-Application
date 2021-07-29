@@ -1,33 +1,48 @@
 package com.niran.restaurantapplication.viewmodels
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.niran.restaurantapplication.repositories.DataDateRepository
 import com.niran.restaurantapplication.repositories.DataVersionRepository
 import com.niran.restaurantapplication.repositories.ItemRepository
 import com.niran.restaurantapplication.utils.LoadingHandler
 import kotlinx.coroutines.launch
+import java.util.*
 
 class MainViewModel(
     private val itemRepository: ItemRepository,
-    private val dataVersionRepository: DataVersionRepository
+    private val dataVersionRepository: DataVersionRepository,
+    private val dataDateRepository: DataDateRepository
 ) : ViewModel() {
+
+    private val _loadDataEvent = MutableLiveData<Boolean>()
+    val loadDataEvent: LiveData<Boolean> = _loadDataEvent
+
+    init {
+        onLoadData()
+    }
 
     fun loadSplashScreen(loadingHandler: LoadingHandler) = viewModelScope.launch {
         try {
+            ///calculating time per update
+            if (!dataDateRepository.isReadyForUpdate()) {
+                loadingHandler.onSuccess()
+                return@launch
+            }
+
             val databaseDataVersionObj = dataVersionRepository.getDatabaseDataVersionObj()
-            Log.d("TAG", "data version from database: ${databaseDataVersionObj.dataVersion}")
             val netWorkDataVersion = dataVersionRepository.getNetworkDataVersion()
 
-            if (databaseDataVersionObj.dataVersion != netWorkDataVersion) {
-                Log.d("TAG", "start executing data update")
-                itemRepository.insertAllItems()
-                dataVersionRepository.insertDataVersion(
-                    databaseDataVersionObj.copy(dataVersion = netWorkDataVersion)
-                )
-                Log.d("TAG", "finished executing data update")
+            //looking for change in version
+            if (databaseDataVersionObj.dataVersion == netWorkDataVersion) {
+                loadingHandler.onSuccess()
+                return@launch
             }
+
+            itemRepository.insertAllItems()
+
+            dataVersionRepository.insertDataVersion(
+                databaseDataVersionObj.copy(dataVersion = netWorkDataVersion)
+            )
 
             loadingHandler.onSuccess()
 
@@ -36,17 +51,30 @@ class MainViewModel(
         }
     }
 
+
+    //region Events
+
+    fun onLoadData() {
+        _loadDataEvent.value = true
+    }
+
+    fun onLoadDataFinished() {
+        _loadDataEvent.value = false
+    }
+
+    //endregion
 }
 
 class MainViewModelFactory(
     private val itemRepository: ItemRepository,
-    private val dataVersionRepository: DataVersionRepository
+    private val dataVersionRepository: DataVersionRepository,
+    private val dataDateRepository: DataDateRepository
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return MainViewModel(itemRepository, dataVersionRepository) as T
+            return MainViewModel(itemRepository, dataVersionRepository, dataDateRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel Class")
     }

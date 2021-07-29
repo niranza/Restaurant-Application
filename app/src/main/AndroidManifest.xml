@@ -17,7 +17,6 @@
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">
 
-
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -37,6 +36,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/splash_screen_theme"
             tools:ignore="LockedOrientationActivity">
 
             <intent-filter>

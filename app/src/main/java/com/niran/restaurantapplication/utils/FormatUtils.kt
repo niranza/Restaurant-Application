@@ -1,15 +1,20 @@
 package com.niran.restaurantapplication.utils
 
-import com.niran.restaurantapplication.database.models.Ingredient
+import com.niran.restaurantapplication.database.models.Item
 
 object FormatUtils {
 
-    fun formatIngredients(ingredients: List<Ingredient>): String {
+    fun formatIngredients(item: Item): String {
         val stringList = mutableListOf<String>()
-        for (ingredient in ingredients)
-            if (!ingredient.isIngredientRemoved)
+        return if (item.isItemOrdered) {
+            for (ingredient in item.itemIngredients.ingredientList.filter { !it.isIngredientRemoved })
                 stringList.add(ingredient.ingredientName)
-        return stringList.joinToString(", ")
+            stringList.joinToString(", ")
+        } else {
+            for (ingredient in item.itemIngredients.ingredientList)
+                stringList.add(ingredient.ingredientName)
+            stringList.joinToString(", ")
+        }
     }
 
 }

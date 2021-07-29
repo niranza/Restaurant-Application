@@ -12,7 +12,7 @@ import com.niran.restaurantapplication.R
 import com.niran.restaurantapplication.RestaurantApplication
 import com.niran.restaurantapplication.database.models.Item
 import com.niran.restaurantapplication.databinding.FragmentOrderBinding
-import com.niran.restaurantapplication.utils.ItemAdapter
+import com.niran.restaurantapplication.utils.adapters.ItemAdapter
 import com.niran.restaurantapplication.utils.MENU_NOTIFICATION_ID
 import com.niran.restaurantapplication.utils.NotificationsUtil
 import com.niran.restaurantapplication.viewmodels.OrderViewModel

@@ -1,4 +1,4 @@
-package com.niran.restaurantapplication.utils
+package com.niran.restaurantapplication.utils.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

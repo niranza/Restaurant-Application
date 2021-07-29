@@ -11,6 +11,7 @@ import com.niran.restaurantapplication.utils.LoadingHandler
 import com.niran.restaurantapplication.utils.NotificationsUtil
 import com.niran.restaurantapplication.viewmodels.MainViewModel
 import com.niran.restaurantapplication.viewmodels.MainViewModelFactory
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,26 +21,34 @@ class MainActivity : AppCompatActivity() {
         MainViewModelFactory(
             (this.application as RestaurantApplication).itemRepository,
             (this.application as RestaurantApplication).dataVersionRepository,
+            (this.application as RestaurantApplication).dataDateRepository,
         )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setTheme(R.style.Theme_RestaurantApplication)
+        supportActionBar?.hide()
         setContentView(R.layout.splash_screen)
 
-        loadData()
+        viewModel.loadDataEvent.observe(this) { needLoadData ->
+            if (needLoadData) {
+                loadData()
+            } else startMainActivity()
+        }
 
     }
 
     private fun loadData() {
         viewModel.loadSplashScreen(object : LoadingHandler {
             override fun onSuccess() {
-                Toast.makeText(this@MainActivity, "Success", Toast.LENGTH_SHORT).show()
-                startMainActivity()
+                Toast.makeText(this@MainActivity, "Welcome", Toast.LENGTH_SHORT).show()
+                viewModel.onLoadDataFinished() //this will call StartMainActivity.
             }
 
             override fun onFailure(error: Exception) {
-                Toast.makeText(this@MainActivity, "Error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@MainActivity, error.message, Toast.LENGTH_LONG).show()
                 finish()
             }
         })
@@ -47,6 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun startMainActivity() {
         setContentView(R.layout.activity_main)
+        supportActionBar?.show()
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment

@@ -23,3 +23,8 @@ const val ITEM_IMAGE_ID = "item_image_id"
 const val INGREDIENT_NAME = "ingredient_name"
 const val IS_INGREDIENT_REMOVABLE = "is_ingredient_removable"
 const val IS_INGREDIENT_REMOVED = "is_ingredient_removed"
+
+const val SECONDS_IN_MILLI: Long = 1000
+const val MINUETS_IN_MILLI = SECONDS_IN_MILLI * 60
+const val HOURS_IN_MILLI = MINUETS_IN_MILLI * 60
+const val DAYS_IN_MILLI = HOURS_IN_MILLI * 24

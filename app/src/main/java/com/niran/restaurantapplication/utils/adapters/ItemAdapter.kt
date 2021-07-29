@@ -1,4 +1,4 @@
-package com.niran.restaurantapplication.utils
+package com.niran.restaurantapplication.utils.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.niran.restaurantapplication.database.models.Item
 import com.niran.restaurantapplication.databinding.ItemItemBinding
+import com.niran.restaurantapplication.utils.FormatUtils
 
 class ItemAdapter(private val itemClickHandler: ItemClickHandler) :
     ListAdapter<Item, ItemAdapter.ItemViewHolder>(ItemCallBack) {
@@ -20,7 +21,7 @@ class ItemAdapter(private val itemClickHandler: ItemClickHandler) :
         fun bind(item: Item) {
             binding.apply {
                 itemNameTv.text = item.itemName
-                ingredientsTv.text = FormatUtils.formatIngredients(item.itemIngredients.ingredientList)
+                ingredientsTv.text = FormatUtils.formatIngredients(item)
                 itemPriceTv.text = item.itemPrice.toString()
                 itemIv.setImageResource(item.itemImageId)
                 itemView.setOnClickListener { itemClickHandler.onItemClicked(item) }
@@ -42,7 +43,7 @@ class ItemAdapter(private val itemClickHandler: ItemClickHandler) :
         fun onItemClicked(item: Item)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemAdapter.ItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder.create(parent, itemClickHandler)
     }
 

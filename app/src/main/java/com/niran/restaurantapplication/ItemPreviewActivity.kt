@@ -36,22 +36,27 @@ class ItemPreviewActivity : AppCompatActivity() {
 
         val itemId = intent?.extras?.getInt(ITEM_ID) ?: -1
 
-        viewModel.getItem(itemId).observe(this) {
-            it?.let { item ->
+        var init = true
+        viewModel.getItem(itemId).observe(this) { nullableItem ->
+            nullableItem?.let { item ->
                 binding.apply {
-                    this@ItemPreviewActivity.item = item
+                    if (init) {
+                        this@ItemPreviewActivity.item = item
 
-                    quantity = item.itemQuantity
+                        itemIv.setImageResource(item.itemImageId)
+                        itemNameTv.text = item.itemName
+                        itemPriceTv.text = item.itemPrice.toString()
+                        ingredientsTv.text = FormatUtils.formatIngredients(item)
+                        addBtn.text = if (item.isItemOrdered) getString(R.string.save)
+                        else getString(R.string.add)
+                    }
 
-                    itemIv.setImageResource(item.itemImageId)
-                    itemNameTv.text = item.itemName
-                    ingredientsTv.text =
-                        FormatUtils.formatIngredients(item.itemIngredients.ingredientList)
-                    itemPriceTv.text = item.itemPrice.toString()
-                    itemQuantityTv.text = item.itemQuantity.toString()
+                    item.itemQuantity.also { itemQuantity ->
+                        quantity = itemQuantity
+                        itemQuantityTv.text = itemQuantity.toString()
+                    }
 
-                    addBtn.text = if (item.isItemOrdered) getString(R.string.save)
-                    else getString(R.string.add)
+                    init = false
                 }
             }
         }

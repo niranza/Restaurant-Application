@@ -3,6 +3,7 @@ package com.niran.restaurantapplication
 import androidx.multidex.MultiDexApplication
 import com.niran.restaurantapplication.database.AppDatabase
 import com.niran.restaurantapplication.database.FirebaseFireStore
+import com.niran.restaurantapplication.repositories.DataDateRepository
 import com.niran.restaurantapplication.repositories.DataVersionRepository
 import com.niran.restaurantapplication.repositories.ItemRepository
 import kotlinx.coroutines.CoroutineScope
@@ -20,5 +21,9 @@ class RestaurantApplication : MultiDexApplication() {
 
     val dataVersionRepository: DataVersionRepository by lazy {
         DataVersionRepository(database.dataVersionDao(), FirebaseFireStore.dataVersionApiService)
+    }
+
+    val dataDateRepository: DataDateRepository by lazy {
+        DataDateRepository(database.dataDateDao())
     }
 }

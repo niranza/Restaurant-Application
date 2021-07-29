@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_medium"
         android:contentDescription="@string/add_menu_item"
-        android:src="@drawable/ic_add"
+        app:srcCompat="@drawable/ic_add"
         app:layout_constraintBottom_toTopOf="@id/make_order_btn"
         app:layout_constraintEnd_toEndOf="parent" />
 

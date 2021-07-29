@@ -18,7 +18,6 @@ class DataVersionApiService {
     suspend fun getDataVersion(): Int = withContext(Dispatchers.IO) {
         val result = dataVersionDocumentRef.get().await()
         val dataVersion = result.toObject(DataVersion::class.java)?.dataVersion
-        Log.d("TAG", "data version from net work: $dataVersion")
         dataVersion!!
     }
 

@@ -10,7 +10,7 @@ import com.niran.restaurantapplication.OrderActivity
 import com.niran.restaurantapplication.RestaurantApplication
 import com.niran.restaurantapplication.database.models.Item
 import com.niran.restaurantapplication.databinding.FragmentBeverageBinding
-import com.niran.restaurantapplication.utils.ItemAdapter
+import com.niran.restaurantapplication.utils.adapters.ItemAdapter
 import com.niran.restaurantapplication.viewmodels.BeverageViewModel
 import com.niran.restaurantapplication.viewmodels.BeverageViewModelFactory
 
@@ -43,13 +43,15 @@ class BeverageFragment : Fragment() {
         })
 
         binding.apply {
-            beverageRv.adapter = adapter
+            beverageRv.apply {
+                this.adapter = adapter
+                setHasFixedSize(true)
+            }
         }
 
         viewModel.beverageList.observe(viewLifecycleOwner) { beverageList ->
             beverageList?.let { adapter.submitList(it) }
         }
-
     }
 
 }

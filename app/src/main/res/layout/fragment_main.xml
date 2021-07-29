@@ -15,9 +15,11 @@
         android:adjustViewBounds="true"
         android:contentDescription="@string/restaurant_name"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/ic_food" />
+        app:srcCompat="@drawable/ic_restaurant_logo" />
 
     <Button
         android:id="@+id/order_btn"

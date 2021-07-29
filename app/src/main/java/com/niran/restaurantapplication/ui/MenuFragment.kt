@@ -9,7 +9,7 @@ import androidx.navigation.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.niran.restaurantapplication.databinding.FragmentMenuBinding
 import com.niran.restaurantapplication.utils.FoodTypes
-import com.niran.restaurantapplication.utils.ViewPagerAdapter
+import com.niran.restaurantapplication.utils.adapters.ViewPagerAdapter
 
 class MenuFragment : Fragment() {
 
@@ -28,10 +28,7 @@ class MenuFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val fragmentList = arrayListOf(
-            FoodFragment(),
-            BeverageFragment()
-        )
+        val fragmentList = arrayListOf(FoodFragment(), BeverageFragment())
 
         val adapter = ViewPagerAdapter(
             fragmentList,
@@ -46,6 +43,5 @@ class MenuFragment : Fragment() {
                 tab.text = getString(FoodTypes.values()[position].titleId)
             }.attach()
         }
-
     }
 }

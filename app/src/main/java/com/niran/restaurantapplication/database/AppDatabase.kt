@@ -6,20 +6,27 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.niran.restaurantapplication.database.daos.DataDateDao
 import com.niran.restaurantapplication.database.daos.DataVersionDao
 import com.niran.restaurantapplication.database.daos.ItemDao
+import com.niran.restaurantapplication.database.models.DataDate
 import com.niran.restaurantapplication.database.models.DataVersion
 import com.niran.restaurantapplication.database.models.Item
 import com.niran.restaurantapplication.utils.Converters
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = [Item::class, DataVersion::class], version = 1, exportSchema = false)
+@Database(
+    entities = [Item::class, DataVersion::class, DataDate::class],
+    version = 1,
+    exportSchema = false
+)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun itemDao(): ItemDao
     abstract fun dataVersionDao(): DataVersionDao
+    abstract fun dataDateDao(): DataDateDao
 
     class RoomCallBack(private val scope: CoroutineScope) : RoomDatabase.Callback() {
 
