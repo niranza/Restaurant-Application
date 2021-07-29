@@ -9,7 +9,7 @@ import com.niran.restaurantapplication.repositories.ItemRepository
 import com.niran.restaurantapplication.utils.LoadingHandler
 import kotlinx.coroutines.launch
 
-class SplashScreenViewModel(
+class MainViewModel(
     private val itemRepository: ItemRepository,
     private val dataVersionRepository: DataVersionRepository
 ) : ViewModel() {
@@ -38,15 +38,15 @@ class SplashScreenViewModel(
 
 }
 
-class SplashScreenViewModelFactory(
+class MainViewModelFactory(
     private val itemRepository: ItemRepository,
     private val dataVersionRepository: DataVersionRepository
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(SplashScreenViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(MainViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return SplashScreenViewModel(itemRepository, dataVersionRepository) as T
+            return MainViewModel(itemRepository, dataVersionRepository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel Class")
     }

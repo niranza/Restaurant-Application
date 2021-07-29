@@ -37,18 +37,16 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".SplashScreenActivity"
-            android:screenOrientation="portrait"
-            android:noHistory="true"
             tools:ignore="LockedOrientationActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
     </application>
 
 </manifest>
